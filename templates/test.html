@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试JSONP请求</title>
+</head>
+<body>
+    <button id="submit_btn" onclick="req()">JSONP请求</button>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        function req() {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'http://www.shsxt.com/school/do_jsonp?callback=myFunction';
+            document.body.appendChild(script)
+        }
+
+        function myFunction(resp){
+            console.log(resp.id, resp.name)
+        }
+
+        /*
+        $(document).ready(function(){
+            $("#submit_btn").click(function () {
+                $.getJSON("http://www.shsxt.com/school/do_jsonp?callback=?", {}, function(resp){
+                    console.log(resp)
+                })
+            })
+        })*/
+    </script>
+
+</body>
+</html>

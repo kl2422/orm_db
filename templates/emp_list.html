@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>员工编号</th>
+            <th>员工姓名</th>
+            <th>上级领导</th>
+            <th>所属部门</th>
+            <th>薪水</th>
+            <th>入职日期</th>
+        </tr>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.empNo }}</td>
+                <td>{{ item.ename }}</td>
+                <td>{{ item.mgr.ename }}</td>
+                <td>{{ item.dept.dname }}</td>
+                <td>{{ item.hireDate }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <p>
+        <input type="input" id="saleGrade">
+        <button id="getSaleGradeBtn">获取等级</button>
+    </p>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $("#getSaleGradeBtn").click(function(){
+            var id = $("#saleGrade").val()
+            $.ajax({
+                url: '../ajax',
+                type: 'get',
+                dataType: 'json',
+                data: {id:id},
+                success: function(resp){
+                    console.log(resp.code)
+                    console.log(resp.message)
+                    console.log(resp.results)
+                }
+            })
+        })
+
+    </script>
+</body>
+</html>
